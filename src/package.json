@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "ar-drone": "^0.3.3"
+  }
+}

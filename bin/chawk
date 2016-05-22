@@ -1,0 +1,25 @@
+INPUT="$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+OUTPUT="$(cd "$(dirname "$2")"; pwd)/$(basename "$2")"
+PRG="$0"
+# Need this for relative symlinks.
+while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        PRG="$link"
+    else
+        PRG=`  "$PRG"`"/$link"
+    fi
+done
+SAVED="`pwd`"
+cd "`dirname \"$PRG\"`/.." >/dev/null
+APP_HOME="`pwd -P`"
+
+echo "Compiling to JavaScript"
+java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js
+cd src
+npm install >/dev/null
+cd ..
+
+echo "Compiling to binary"
+nexe -i src/index.js -o $OUTPUT >/dev/null
