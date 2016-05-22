@@ -16,7 +16,7 @@ cd "`dirname \"$PRG\"`/.." >/dev/null
 APP_HOME="`pwd -P`"
 
 echo "Compiling to JavaScript"
-java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js
+java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js >/dev/null
 cd src
 npm install >/dev/null
 cd ..
