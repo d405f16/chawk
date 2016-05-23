@@ -5,14 +5,14 @@ module.exports = {
     takeoff: function (callback) {
         client.takeoff();
         client.after(5000, function () {
-            callback();
+            if (typeof callback === "function") callback();
         });
     },
 
     land: function (callback) {
         client.land();
         client.after(5000, function () {
-            callback();
+            if (typeof callback === "function") callback();
         });
     },
 
@@ -30,37 +30,37 @@ module.exports = {
             case "front":
                 client.front(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
             case "back":
                 client.back(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
             case "left":
                 client.left(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
             case "right":
                 client.right(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
             case "up":
                 client.up(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
             case "down":
                 client.down(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
         }
@@ -80,13 +80,13 @@ module.exports = {
             case "cw":
                 client.clockwise(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
             case "ccw":
                 client.counterClockwise(params.speed).after(params.time, function () {
                     client.stop();
-                    callback();
+                    if (typeof callback === "function") callback();
                 });
                 break;
         }
