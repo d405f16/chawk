@@ -2,14 +2,14 @@ var drone = require('ar-drone');
 var client = drone.createClient();
 
 module.exports = {
-    takeoff: function (callback) {
+    takeoff: function (params, callback) {
         client.takeoff();
         client.after(5000, function () {
             if (typeof callback === "function") callback();
         });
     },
 
-    land: function (callback) {
+    land: function (params, callback) {
         client.land();
         client.after(5000, function () {
             if (typeof callback === "function") callback();
