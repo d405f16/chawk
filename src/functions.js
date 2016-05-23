@@ -3,11 +3,17 @@ var client = drone.createClient();
 
 module.exports = {
     takeoff: function (callback) {
-        client.takeoff(callback);
+        client.takeoff();
+        client.after(5000, function () {
+            callback();
+        });
     },
 
     land: function (callback) {
-        client.land(callback);
+        client.land();
+        client.after(5000, function () {
+            callback();
+        });
     },
 
     fly: function (params, callback) {

@@ -10,3 +10,7 @@ echo "Building compiler..."
 cd tmp/chawk
 gradle fatJar >/dev/null
 cd ../..
+
+cd src
+npm install >/dev/null
+cd ..

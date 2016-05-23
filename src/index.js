@@ -1,4 +1,4 @@
-var drone = require('./functions');
-require('../tmp/compiled');
+var functions = require('../src/functions');
+require('../tmp/compiled')(functions);
 setup();
 route();
