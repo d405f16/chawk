@@ -5,3 +5,4 @@
 - NodeJS
 - Visual Studio 2015
 - Visual Studio C++
+- Nexe
