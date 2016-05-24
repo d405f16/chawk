@@ -16,9 +16,10 @@ module.exports = function (client, navdata) {
 
     function takeoff(param, callback) {
         client.takeoff();
-        client.after(5000, function () {
+        setTimeout(function () {
+            client.stop();
             if (typeof callback === "function") callback();
-        });
+        }, 5000);
     }
 
     function land(param, callback) {
