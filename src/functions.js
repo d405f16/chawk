@@ -48,6 +48,7 @@ module.exports = {
                 client.down(params.speed);
                 break;
         }
+
         setTimeout(function () {
             client.stop();
             if (typeof callback === "function") callback();
@@ -72,6 +73,7 @@ module.exports = {
                 client.counterClockwise(params.speed);
                 break;
         }
+
         setTimeout(function () {
             client.stop();
             if (typeof callback === "function") callback();
