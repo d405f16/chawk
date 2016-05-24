@@ -1,5 +1,6 @@
 INPUT="$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
 OUTPUT="$(cd "$(dirname "$2")"; pwd)/$(basename "$2")"
+
 PRG="$0"
 # Need this for relative symlinks.
 while [ -h "$PRG" ] ; do
@@ -15,9 +16,18 @@ SAVED="`pwd`"
 cd "`dirname \"$PRG\"`/.." >/dev/null
 APP_HOME="`pwd -P`"
 
-echo "Compiling to JavaScript"
-java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js >/dev/null
-
-echo "Compiling to binary"
-#nexe -i src/index.js -o $OUTPUT
-node src/index.js
+if [ -z $2 ]; then
+    echo "Compiling to JavaScript..."
+    java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js >/dev/null
+    node src/index.js
+else
+    if [ ${OUTPUT##*.} == "class" ]; then
+        echo "Compiling to Java Byte Code..."
+        java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT $OUTPUT >/dev/null
+    fi
+    if [ ${OUTPUT##*.} == "exe" ]; then
+        echo "Compiling executable..."
+        java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js >/dev/null
+        nexe -i src/index.js -o $OUTPUT
+    fi
+fi

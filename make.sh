@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo "Downloading compiler..."
 if [ ! -d "tmp/chawk" ]; then
 git clone https://github.com/d405f16/chawk-compiler.git tmp/chawk >/dev/null

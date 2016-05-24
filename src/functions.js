@@ -4,14 +4,14 @@ var client = drone.createClient();
 module.exports = {
     takeoff: function (params, callback) {
         client.takeoff();
-        client.after(10000, function () {
+        client.after(5000, function () {
             if (typeof callback === "function") callback();
         });
     },
 
     land: function (params, callback) {
         client.land();
-        client.after(10000, function () {
+        client.after(5000, function () {
             if (typeof callback === "function") callback();
         });
     },
@@ -25,40 +25,47 @@ module.exports = {
             throw "direction is a required parameter";
 
         params.speed = params.speed / 100;
+        params.time = params.time * 1000;
 
         switch (params.direction) {
             case "front":
-                client.front(params.speed).after(params.time, function () {
+                client.front(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
                 break;
             case "back":
-                client.back(params.speed).after(params.time, function () {
+                client.back(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
                 break;
             case "left":
-                client.left(params.speed).after(params.time, function () {
+                client.left(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
                 break;
             case "right":
-                client.right(params.speed).after(params.time, function () {
+                client.right(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
                 break;
             case "up":
-                client.up(params.speed).after(params.time, function () {
+                client.up(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
                 break;
             case "down":
-                client.down(params.speed).after(params.time, function () {
+                client.down(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
@@ -78,13 +85,15 @@ module.exports = {
 
         switch (params.direction) {
             case "cw":
-                client.clockwise(params.speed).after(params.time, function () {
+                client.clockwise(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
                 break;
             case "ccw":
-                client.counterClockwise(params.speed).after(params.time, function () {
+                client.counterClockwise(params.speed);
+                client.after(params.time, function () {
                     client.stop();
                     if (typeof callback === "function") callback();
                 });
