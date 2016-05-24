@@ -18,7 +18,8 @@ APP_HOME="`pwd -P`"
 
 if [ -z $2 ]; then
     echo "Compiling to JavaScript..."
-    java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js >/dev/null
+    java -jar tmp/chawk/build/libs/cHawk-all-*.jar $INPUT tmp/compiled.js
+    echo "Running JavaScript"
     node src/index.js
 else
     if [ ${OUTPUT##*.} == "class" ]; then
